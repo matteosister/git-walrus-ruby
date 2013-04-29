@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source :rubygems
 
 # Server requirements
 # gem 'thin' or mongrel
@@ -8,6 +8,7 @@ gem 'rake'
 gem 'rack-flash'
 
 # Component requirements
+gem 'compass'
 gem 'haml'
 
 # Test requirements
