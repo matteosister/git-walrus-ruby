@@ -1,4 +1,11 @@
+!!! 5
 %head
   %title Git Walrus
+  %link{ :type => 'text/css', :rel => 'stylesheet', :href => 'bootstrap/css/bootstrap.min.css' }
+  %link{ :type => 'text/css', :rel => 'stylesheet', :href => 'bootstrap/css/bootstrap-responsive.min.css' }
+  %link{ :type => 'text/css', :rel => 'stylesheet', :href => 'all.css' }
 %body
-  - @repo.tree 'master'
+  - @repo.tree('master').trees.each do |dir|
+    %p= dir.name
+  - @repo.tree('master').blobs.each do |blob|
+    %p= blob.name

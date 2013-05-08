@@ -1,30 +1,20 @@
+require 'rubygems'
 require 'sinatra'
 require 'grit'
 require 'haml'
 
-@repo = Grit::Repo.new File.realdirpath(__dir__)
-puts @repo.commits.first
-@tree = Grit::Tree.create(@repo, {})
-puts @tree.contents
-#@tree/'/'.contents.each do |child|
-#  puts child
-#end
+set :haml, {:format => :html5}
+set :scss, {:views => 'scss'}
 
 before do
-  @repo = Grit::Repo.new File.realdirpath(__dir__)
+  @repo = Grit::Repo.new('/home/matteo/libraries/GitElephant')
+end
+
+get '/all.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  scss :all, :style => :expanded
 end
 
 get '/' do
   haml :homepage, :repo => @repo
 end
-
-
-#require 'sinatra/base'
-#
-#class Walrus < Sinatra::Base
-#  get '/' do
-#    render :index
-#  end
-#
-#  run! if app_file == $0
-#end

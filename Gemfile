@@ -7,3 +7,4 @@ gem 'sinatra'
 # custom deps
 gem 'grit'
 gem 'haml'
+gem 'sass'
