@@ -9,6 +9,8 @@ gem 'grit'
 gem 'haml'
 gem 'sass'
 gem 'rack-test'
+gem 'coffee-script'
+gem 'json', '~> 1.7.7'
 
 group :test do
   gem 'rspec'

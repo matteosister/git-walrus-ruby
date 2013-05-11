@@ -3,7 +3,14 @@
   %title Git Walrus
   %link{ :type => 'text/css', :rel => 'stylesheet', :href => '/bootstrap/css/bootstrap.min.css' }
   %link{ :type => 'text/css', :rel => 'stylesheet', :href => '/bootstrap/css/bootstrap-responsive.min.css' }
-  %link{ :type => 'text/css', :rel => 'stylesheet', :href => '/all.css' }
+  %link{ :type => 'text/css', :rel => 'stylesheet', :href => '/css/all.css' }
 %body
-  %section.container-fluid
+  %section#main.container-fluid
     = yield
+  %script{ :src => '/bower/jquery/jquery.min.js' }
+  %script{ :src => '/bower/underscore/underscore-min.js' }
+  %script{ :src => '/bower/backbone/backbone-min.js' }
+  %script{ :src => '/js/_GW.js' }
+  %script{ :src => '/js/AppView.js' }
+  %script{ :src => '/js/RepositoryView.js' }
+  %script{ :src => '/js/Router.js' }

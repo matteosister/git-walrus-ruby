@@ -3,9 +3,11 @@ require 'sinatra'
 require 'grit'
 require 'haml'
 require 'sass'
+require 'coffee-script'
 
 set :haml, {:format => :html5}
-set :scss, {:views => 'scss'}
+set :scss, {:views => 'assets/scss'}
+set :coffee, {:views => 'assets/coffee'}
 
 #@repo = Grit::Repo.new('/home/matteo/libraries/GitElephant')
 #@path = 'src'
@@ -32,13 +34,20 @@ get '/tree/:ref/*' do
   haml :tree
 end
 
-get '/all.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  scss :all, :style => :expanded
-end
-
 get '/' do
   @ref = 'master'
   @tree = @repo.tree(@ref)
   haml :homepage, :layout => :layout
 end
+
+get '/js/:name' do
+  content_type 'text/javascript', :charset => 'utf-8'
+  content = File.open(Dir.pwd + '/assets/coffee/' + params[:name].to_s.sub('.js', '.coffee'))
+  coffee content.read
+end
+
+get '/css/all.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  scss :all, :style => :expanded
+end
+
