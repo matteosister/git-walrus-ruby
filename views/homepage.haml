@@ -1,12 +1,8 @@
 %h2= @ref
-//  %table.table.table-bordered.table-condensed.table-bordered
-//    - @tree.trees.each do |dir|
-//      %tr
-//        %td
-//          %i.icon-folder-close
-//          %a{ :href => url("/tree/#{@ref}/#{dir.name}") }= dir.name
-//    - @tree.blobs.each do |blob|
-//      %tr
-//        %td
-//          %i.icon-file
-//          %a{ :href => url("/tree/#{@ref}/#{blob.name}") }= blob.name
+
+%script{ :type => 'text/template' }
+  %table.table.table-bordered.table-condensed.table-bordered
+    %tr
+      %td
+        <i class="icon-arrow-left"></i>
+        <a><%= back_url %></a>

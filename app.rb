@@ -20,6 +20,14 @@ before do
   @repo = Grit::Repo.new('/home/matteo/libraries/GitElephant')
 end
 
+get '/tree/:ref' do
+  @ref = params[:ref]
+  @path = '/'
+  @back = '/'
+  @tree = @repo.tree/@path
+  haml :tree, :layout => false
+end
+
 get '/tree/:ref/*' do
   @ref = params[:ref]
   @path = params[:splat].first.to_s
@@ -29,7 +37,6 @@ get '/tree/:ref/*' do
     newPath = @path.split('/')[0..-2].join('/')
     @back = "/tree/#{ @ref }/#{ newPath }"
   end
-  puts @back
   @tree = @repo.tree/@path
   haml :tree
 end

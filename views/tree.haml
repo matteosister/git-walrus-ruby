@@ -1,17 +1,15 @@
-%h2= @ref
-%section#repository
-  %table.table.table-bordered.table-condensed.table-bordered
+%table.table.table-bordered.table-condensed.table-bordered
+  %tr
+    %td
+      %i.icon-arrow-left
+      %a{ :href => url(@back) } back
+  - @tree.trees.each do |dir|
     %tr
       %td
-        %i.icon-arrow-left
-        %a{ :href => url(@back) } back
-    - @tree.trees.each do |dir|
-      %tr
-        %td
-          %i.icon-folder-close
-          %a{ :href => url("/tree/#{@ref}/#{@path}/#{dir.name}") }= dir.name
-    - @tree.blobs.each do |blob|
-      %tr
-        %td
-          %i.icon-file
-          %a{ :href => url("/tree/#{@ref}/#{@path}/#{blob.name}") }= blob.name
+        %i.icon-folder-close
+        %a{ :href => url("/tree/#{@ref}/#{@path}/#{dir.name}") }= dir.name
+  - @tree.blobs.each do |blob|
+    %tr
+      %td
+        %i.icon-file
+        %a{ :href => url("/tree/#{@ref}/#{@path}/#{blob.name}") }= blob.name
