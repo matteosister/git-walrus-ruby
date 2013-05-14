@@ -1,23 +1,17 @@
-class GW.RepositoryModel extends Backbone.Model
-  defaults:
-    ref: 'master'
-    path: ''
-    backUrl: '#'
-
 class GW.RepositoryView extends Backbone.View
   tagName: 'section'
   id: 'repository'
   template: 'tree'
-  model: new GW.RepositoryModel
-
-  render: ->
-    GW.TemplateManager.get this.template, (tmp) =>
-      html = tmp(@model.toJSON())
-      @$el.html html
-    @
+  model: null
 
   initialize: ->
     @model = new GW.RepositoryModel
+
+  render: ->
+    GW.TemplateManager.get this.template, (template) =>
+      html = template(@model.toJSON())
+      @$el.html html
+    @
 
 #  loadTree: ->
 #    $.ajax

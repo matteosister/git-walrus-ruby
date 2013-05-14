@@ -23,7 +23,6 @@ end
 get '/tree/:ref' do
   @ref = params[:ref]
   @path = '/'
-  @back = '/'
   @tree = @repo.tree/@path
   haml :tree, :layout => false
 end
