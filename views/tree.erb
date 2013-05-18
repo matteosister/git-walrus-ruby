@@ -1,26 +1,24 @@
-[
-  {
+{
     "trees": [
-      <% @tree.trees.each do |dir| %>
+    <% @tree.trees.each do |dir| %>
         <%= dir.basename.to_json %>
         <%= "," if @tree.trees.last != dir %>
-      <% end %>
+    <% end %>
     ],
     "blobs": [
-      <% @tree.blobs.each do |file| %>
+        <% @tree.blobs.each do |file| %>
         <%= file.basename.to_json %>
         <%= "," if @tree.blobs.last != file %>
-      <% end %>
+    <% end %>
     ],
     "submodules": [
     <% @submodules.each do |submodule| %>
-      {
-        "name": <%= submodule[0].to_json %>,
-        "id": <%= submodule[1]['id'].to_json %>,
-        "path": <%= submodule[1]['path'].to_json %>,
-        "url": <%= submodule[1]['url'].to_json %>
-      }
+        {
+            "name": <%= submodule[0].to_json %>,
+            "id": <%= submodule[1]['id'].to_json %>,
+            "path": <%= submodule[1]['path'].to_json %>,
+            "url": <%= submodule[1]['url'].to_json %>
+        }
     <% end %>
     ]
-  }
-]
+}
