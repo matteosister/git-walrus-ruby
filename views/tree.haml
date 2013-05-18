@@ -1,21 +1,16 @@
--#%table.table.table-bordered.table-condensed.table-bordered
--#  %tr
--#    %td
--#      %i.icon-arrow-left
--#      %a{ :href => url(@back) } back
--#  - @tree.trees.each do |dir|
--#    %tr
--#      %td
--#        %i.icon-folder-close
--#        %a{ :href => url("/tree/#{@ref}/#{@path}/#{dir.name}") }= dir.name
--#  - @tree.blobs.each do |blob|
--#    %tr
--#      %td
--#        %i.icon-file
--#        %a{ :href => url("/tree/#{@ref}/#{@path}/#{blob.name}") }= blob.name
 [
-- @tree.trees.each do |dir|
-  = dir.to_json
-  - if @tree.trees.last != dir
-    ,
+  {
+    'trees': [
+      - @tree.trees.each do |dir|
+        = dir.basename.to_json
+        - if @tree.trees.last != dir
+          ,
+    ],
+    'blobs': [
+      - @tree.blobs.each do |file|
+        = file.basename.to_json
+        - if @tree.blobs.last != file
+          ,
+    ]
+  }
 ]

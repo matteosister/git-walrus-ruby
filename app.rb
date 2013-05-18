@@ -4,6 +4,7 @@ require 'grit'
 require 'haml'
 require 'sass'
 require 'coffee-script'
+require 'json'
 
 set :haml, {:format => :html5}
 set :scss, {:views => 'assets/scss'}
@@ -17,14 +18,16 @@ set :coffee, {:views => 'assets/coffee'}
 #end
 
 before do
-  @repo = Grit::Repo.new('/home/matteo/libraries/GitElephant')
+  @repo = Grit::Repo.new('/home/matteo/libraries/WalrusProject')
 end
 
 get '/tree/:ref' do
+  content_type 'application/json', :charset => 'utf-8'
   @ref = params[:ref]
   @path = '/'
   @tree = @repo.tree/@path
-  haml :tree, :layout => false
+  @submodules = Grit::Submodule.config @repo
+  erb :tree, :layout => false
 end
 
 get '/tree/:ref/*' do
